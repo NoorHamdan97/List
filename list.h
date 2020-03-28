@@ -1,9 +1,14 @@
 #ifndef LIST_H_
 #define LIST_H_
 
-#include "library2.h"
 #include <stdio.h>
 #include <stdlib.h>
+typedef enum {
+    SUCCESS = 0,
+    FAILURE = -1,
+    ALLOCATION_ERROR = -2,
+    INVALID_INPUT = -3
+} StatusType;
 
 template<class T>
 class Node {
@@ -27,15 +32,11 @@ public:
 	Node<T>* getnext();
 	Node<T>* getcurr();
 };
+
 template<class T>
 T* Node<T>::getData() {
 	return this->data;
 }
-
-//template <class T>
-//Node<T>::~Node(){
-////	delete data;
-//}
 
 template<class T>
 int Node<T>::getkey() {
@@ -51,6 +52,7 @@ template<class T>
 Node<T>* Node<T>::getnext() {
 	return this->next;
 }
+
 template<class T>
 Node<T>* Node<T>::getcurr() {
 	return this;
@@ -79,6 +81,7 @@ public:
 	StatusType Size(int* n);
 	StatusType DeleteByPointer(Node<T>* node);
 };
+
 template<class T>
 void List<T>::Quit() {
 	Node<T>* it = this->begin();
@@ -143,7 +146,7 @@ StatusType List<T>::Adding(int k, T* data){
 		}
 		T* datatoadd=new T;
 		*datatoadd=*data;
-		Node<T> *newNode = new Node<T>(k,datatoadd); //must check if the is an aloocation error
+		Node<T> *newNode = new Node<T>(k,datatoadd); //must check if the is an allocation error
 		//node = newNode;
 		if (head == NULL) {
 			head = newNode;
