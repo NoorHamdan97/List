@@ -1,2 +1,2 @@
 # List
-a simple list
+a simple generic list
